@@ -1,0 +1,26 @@
+<div class="p-5 ">
+  <h1 class="text-center text-consolas" [class.initial]="!activeArticle">
+    Make it impressive.
+  </h1>
+</div>
+
+<div class="box-container" [class.rendered]="activeArticle">
+  <div *ngFor="let boxArray of contentBox" class="d-flex">
+    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1" tabindex="0"></div>
+  </div>
+</div>
+<div class="box-container p-5 my-5" [class.rendered]="activeArticle">
+  <div *ngFor="let boxArray of contentBox" class="d-flex">
+    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1"></div>
+  </div>
+</div>
+
+<div #item class="m-5 pb-5 d-flex justify-content-evenly" [@bounce]="showContent ? 'rendered' : 'hidden'" [@fade]="showContent ? 'rendered' : 'hidden'">
+  <div class="p-5 bg-dark opacity-50"><h2 class="text-white">welcome to my world</h2></div>
+</div>
+
+<div class="box-container pb-5 my-5" [class.rendered]="activeArticle">
+  <div *ngFor="let boxArray of contentBox" class="d-flex">
+    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1"></div>
+  </div>
+</div>

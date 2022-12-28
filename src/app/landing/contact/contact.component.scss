@@ -1,0 +1,52 @@
+$white: rgb(248, 230, 230);
+$wheat: rgb(239, 182, 176);
+$dark-wheat: rgb(152, 133, 117);
+$darker-wheat: rgb(138, 122, 107);
+
+input, textarea, select {
+  min-height: 2rem;
+  width: 100%;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  background-image: linear-gradient(to right, $dark-wheat, $darker-wheat);
+  opacity: .8;
+  color: $white;
+}
+
+.form-container {
+  width: 100%;
+  @media (min-width: 480px) {
+    width: 75%
+  }
+  @media (min-width: 1280px) {
+    width: 50%;
+  }
+}
+
+.text-consolas p {
+  cursor: default;
+  transition: border-bottom-color .3s ease;
+  border-bottom: .025rem solid transparent;
+
+  &:hover {
+    opacity: .75;
+  }
+
+  &.active {
+    border-bottom: .025rem solid;
+  }
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $wheat;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $wheat;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $wheat;
+}

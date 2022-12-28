@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div [@slideDown]="showHeader ? 'rendered' : 'hidden'">
+    <app-header></app-header>
+  </div>
+  <router-outlet></router-outlet>
+  <div #footer>
+    <app-footer [activateAnimation]="showFooter"></app-footer>
+  </div>
+</div>

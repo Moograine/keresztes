@@ -1,0 +1,35 @@
+h1 {
+  font-size: calc((6.4 - 1) * 1.2vw + 1rem);
+  transition: all .5s cubic-bezier(1, .05, .6, 1);
+
+  &.initial {
+    color: transparent;
+    text-shadow: 0 0 1.25rem #000;
+  }
+}
+
+.box-container {
+  margin: 0 15% 0 15%;
+  opacity: 0;
+  transition: opacity 1500ms .5s cubic-bezier(.8,-0.14,.3,1.02);
+  &.rendered {
+    opacity: 1;
+  }
+  .box {
+    box-shadow: 5px 4px 4px hsl(0deg 0% 0% / 25%);
+    background-color: rgb(174, 161, 157);
+    transition: all 200ms ease;
+    height: 10vh;
+    &:hover {
+      background-color: rgb(195, 181, 176);
+    }
+    &:focus {
+      transform: scale(1.2);
+      box-shadow: 4px 5px 12px hsl(0deg 0% 0% / 60%);
+    }
+   }
+}
+
+.bg-dark h2 {
+  font-size: calc((6.4 - 1) * .75vw + 2rem);
+}

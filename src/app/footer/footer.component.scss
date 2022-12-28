@@ -1,0 +1,73 @@
+$shadow: rgb(0 0 0 / 25%);
+
+.contact {
+  height: 15rem;
+}
+
+.copyright {
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: all 250ms ease;
+
+    &:hover {
+      opacity: .75;
+    }
+  }
+
+  p {
+    @media (max-width: 420px) {
+      font-size: .8rem;
+    }
+  }
+}
+
+.social-media a {
+  cursor: default;
+
+  i {
+    color: rgb(93, 86, 84);
+    transition: linear;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 1px $shadow);
+    //text-shadow: 0 0 10px $shadow, 0 0 20px $shadow, 0 0 30px $shadow ;
+    &:hover {
+      opacity: .75;
+    }
+  }
+}
+
+.conditions p {
+  color: rgb(74, 73, 100);
+  font-weight: bold;
+  border-bottom: .1rem solid;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .75;
+  }
+}
+
+.conditions-wrapper {
+  word-break: break-word;
+  width: 50rem;
+  margin: 5vw 5vw 5vw 5vw;
+  @media (max-width: 1024px) {
+    margin: 10vw 5vw 10vw 5vw;
+  }
+
+  .domain {
+    font-weight: bold;
+    opacity: .75;
+  }
+}
+
+@media (max-width: 720px) {
+  .contact {
+    flex-direction: column;
+  }
+  .conditions p {
+    font-size: calc(.4rem + 1vw);
+  }
+}

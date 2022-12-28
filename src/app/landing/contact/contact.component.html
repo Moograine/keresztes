@@ -1,0 +1,84 @@
+<div class="min-vh-100 m-4 p-1 p-sm-5 text-opacity-75">
+  <h2 class="text-center mt-5 text-consolas">Talk to me! If you have any questions, or just wanna reach out, don't hesitate.
+                                             If it's business related, you can send me a detailed proposal as well.</h2>
+  <div class="mt-5 d-flex justify-content-center">
+    <div class="form-container">
+      <div class="d-flex text-consolas">
+        <p [class.active]="isContact" (click)="switchForm()">talk to me</p>
+        <p [class.active]="!isContact" (click)="switchForm()" class="ms-5">send a detailed proposal</p>
+      </div>
+      <form *ngIf="isContact" [formGroup]="contact">
+        <div class="d-md-flex d-sm-block">
+          <div class="col m-1">
+            <input type="text"
+                   placeholder="Name"
+                   formControlName="name"
+                   aria-label="Name">
+          </div>
+          <div class="col m-1">
+            <input type="text"
+                   placeholder="Email"
+                   formControlName="email"
+                   aria-label="Email">
+          </div>
+        </div>
+        <div class="m-1">
+          <textarea type="text"
+                    placeholder="Description"
+                    formControlName="description"
+                    aria-label="Description">
+          </textarea>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-dark opacity-75 m-1" type="submit" (click)="submit()">Submit</button>
+        </div>
+      </form>
+      <form *ngIf="!isContact" [formGroup]="proposal">
+        <div class="d-md-flex d-sm-block">
+          <div class="col m-1">
+            <input type="text"
+                   placeholder="Name"
+                   formControlName="name"
+                   aria-label="Name">
+          </div>
+          <div class="col m-1">
+            <input type="text"
+                   placeholder="Email"
+                   formControlName="email"
+                   aria-label="Email">
+          </div>
+        </div>
+        <div class="d-md-flex d-sm-block">
+          <div class="col m-1">
+            <input type="text"
+                   placeholder="Budget"
+                   formControlName="budget"
+                   aria-label="Budget">
+          </div>
+          <div class="col m-1">
+            <select
+              formControlName="period"
+              aria-label="Contract Peripd">
+              <option value="" selected disabled hidden>Contract period</option>
+              <option selected="selected">1 month</option>
+              <option>2 months</option>
+              <option>3 months</option>
+              <option>indefinite</option>
+            </select>
+          </div>
+        </div>
+        <div class="m-1">
+          <textarea type="text"
+                    placeholder="Description"
+                    formControlName="description"
+                    aria-label="Description">
+          </textarea>
+        </div>
+        <button class="btn btn-light opacity-75 m-1" (click)="attachFile()">Attach file</button>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-dark opacity-75 m-1" type="submit" (click)="submit()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
