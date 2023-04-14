@@ -1,4 +1,4 @@
-# Kereszteszs
+# kereszteszs
 
 This project was created with Angular 14.0.0.
 
