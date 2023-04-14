@@ -1,15 +1,24 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, EmailValidator, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {CommunicationsService} from "../../../assets/services/communications.service";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  EmailValidator,
+  FormBuilder,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
+import { CommunicationsService } from '../../../assets/services/communications.service';
+import { takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnDestroy {
   @ViewChild('dropdown') dropdown: ElementRef | undefined;
   @ViewChild('proposalBudget') proposalBudget: ElementRef | undefined;
+  activeComponent = true;
   proposalOverflowTimeout = 0;
   status: 'loading' | 'sent' | '' = '';
 
@@ -83,47 +92,54 @@ export class ContactComponent {
       if (!control.value) {
         return null;
       }
-      return /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/.test(control.value) ? null : {invalidFormat: true};
+      return /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/.test(control.value) ? null : { invalidFormat: true };
     }
+  }
+
+  sendMail(button: HTMLButtonElement): void {
+    this.communications.sendMail(this.contact.value).pipe(takeWhile(() => this.activeComponent))
+      .subscribe((): void => {
+        this.status = 'sent';
+        button.classList.remove('opacity-75');
+        button.classList.add('bg-green');
+        this.contact.reset();
+        this.allFiles = [];
+        setTimeout((): void => {
+          this.status = '';
+          button.classList.remove('bg-green');
+        }, 1000);
+      });
   }
 
   submit(button: HTMLButtonElement): void {
     if (this.isContact) {
       this.status = 'loading';
       button.classList.add('opacity-75');
-      this.communications.getContactList().subscribe((contactList: object): void => {
-        this.contact.value.id = contactList ? Object.keys(contactList).length.toString() : '0';
-        this.communications.reachOutWithContact(this.contact.value).subscribe((): void => {
-          this.communications.sendMail(this.contact.value).subscribe((): void => {
-            this.status = 'sent';
-            button.classList.remove('opacity-75');
-            button.classList.add('bg-green');
-            setTimeout((): void => {
-              this.status = '';
-              button.classList.remove('bg-green');
-            }, 1000);
-            this.contact.reset();
-          });
+      this.communications.getContactList().pipe(takeWhile(() => this.activeComponent))
+        .subscribe((contactList: object): void => {
+          this.contact.value.id = contactList ? Object.keys(contactList).length.toString() : '0';
+          this.communications.reachOutWithContact(this.contact.value)
+            .pipe(takeWhile(() => this.activeComponent))
+            .subscribe((): void => {
+              this.sendMail(button);
+            })
         })
-      })
     } else { // TODO send correct format
       this.status = 'loading';
       button.classList.add('opacity-75');
-      this.communications.getProposalList().subscribe((proposalList: object): void => {
-        this.contact.value.id = proposalList ? Object.keys(proposalList).length.toString() : '0';
-        this.communications.reachOutWithProposal(this.contact.value).subscribe((): void => {
-          this.communications.sendMail(this.contact.value).subscribe((): void => {
-            this.status = 'sent';
-            button.classList.remove('opacity-75');
-            button.classList.add('bg-green');
-            this.contact.reset();
-            setTimeout((): void => {
-              this.status = '';
-              button.classList.remove('bg-green');
-            }, 1000);
-          });
+      this.communications.getProposalList().pipe(takeWhile(() => this.activeComponent))
+        .subscribe((proposalList: object): void => {
+          this.contact.value.id = proposalList ? Object.keys(proposalList).length.toString() : '0';
+          this.communications.reachOutWithProposal(this.contact.value)
+            .pipe(takeWhile(() => this.activeComponent))
+            .subscribe((): void => {
+              this.sendMail(button);
+            })
         })
-      })
     }
+  }
+
+  ngOnDestroy() {
+    this.activeComponent = false;
   }
 }
