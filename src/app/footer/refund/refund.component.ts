@@ -1,19 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-refund',
   templateUrl: './refund.component.html',
-  styleUrls: [
-    './refund.component.scss',
-    '../footer.component.scss'
-  ]
+  styleUrls: ['../footer.component.scss']
 })
-export class RefundComponent implements OnInit {
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-}
+export class RefundComponent {}

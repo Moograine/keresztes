@@ -1,35 +1,163 @@
-h1 {
-  font-size: calc((6.4 - 1) * 1.2vw + 1rem);
-  transition: all .5s cubic-bezier(1, .05, .6, 1);
+@import 'src/assets/styles/variables';
 
-  &.initial {
-    color: transparent;
-    text-shadow: 0 0 1.25rem #000;
+.background {
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  outline: 0;
+}
+
+.landing-bg {
+  height: 100vh;
+  transform: translateY(-$header-height);
+
+  .background {
+    background-image: url(../../assets/images/landing/ideas/pexels-andrew.jpg);
+  }
+
+  h1 {
+    top: 15%;
+    font-size: calc(5.4 * 1.2vw + 1rem);
+  }
+
+  &.welcome-animation {
+    .background {
+      animation: blur 2s forwards;
+
+      @keyframes blur {
+        from {
+          opacity: 0;
+          filter: blur(3rem);
+        }
+        to {
+          opacity: 1;
+          filter: none;
+        }
+      }
+    }
+
+    h1 {
+      animation: blur-in 1.5s cubic-bezier(1, 0, .5, 1) forwards;
+      @keyframes blur-in {
+        0% {
+          color: transparent;
+          text-shadow: 0 0 1.5rem $black;
+        }
+        80% {
+          color: transparent;
+          text-shadow: 0 0 1.5rem $black;
+        }
+        100% {
+          color: $black;
+          text-shadow: none;
+        }
+      }
+    }
   }
 }
 
-.box-container {
-  margin: 0 15% 0 15%;
-  opacity: 0;
-  transition: opacity 1500ms .5s cubic-bezier(.8,-0.14,.3,1.02);
-  &.rendered {
-    opacity: 1;
+.content {
+  font-size: calc(1.1rem + 1vw);
+  line-height: calc(1.25rem + 1.25vw);
+
+  &-sm {
+    font-size: calc(.9rem + .5vw);
+    line-height: calc(1.25rem + .75vw);
   }
+}
+
+.self-content {
+  height: 100vh;
+
+  .background {
+    background-image: url(../../assets/images/landing/ideas/sora-sagano.jpg);
+  }
+
   .box {
-    box-shadow: 5px 4px 4px hsl(0deg 0% 0% / 25%);
-    background-color: rgb(174, 161, 157);
-    transition: all 200ms ease;
-    height: 10vh;
+    position: relative;
+    border-radius: .5rem;
+    height: 15vw;
+    background-color: $transparent_4-white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: .1rem .1rem .5rem $shadow-light;
+
+    p {
+      margin: 1.5rem;
+      font-size: 1.5vw;
+      transition: .5s;
+    }
+
+    h1 {
+      margin: 1.5rem;
+      font-size: 4vh;
+      transition: .5s;
+    }
+
     &:hover {
-      background-color: rgb(195, 181, 176);
+      p, h1 {
+        transform: scale(.9);
+      }
     }
-    &:focus {
-      transform: scale(1.2);
-      box-shadow: 4px 5px 12px hsl(0deg 0% 0% / 60%);
+  }
+
+  @media (max-width: 1200px) {
+    height: 200vh;
+
+    .box {
+      height: 25vh;
+
+      p {
+        font-size: 2.75vh;
+      }
     }
-   }
+  }
 }
 
-.bg-dark h2 {
-  font-size: calc((6.4 - 1) * .75vw + 2rem);
+.framework {
+  .item {
+    background-color: $light-wheat-contrast;
+    box-shadow: 0.2rem 0.4rem 1rem $shadow;
+    border-radius: 1rem;
+  }
+
+  img {
+    height: calc(17.5rem + 27vw / 3);
+    filter: drop-shadow(.1rem 0.75rem .35rem $shadow);
+    transition: .75s;
+
+    &:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(.1rem 0.5rem .75rem $black);
+    }
+
+    @media (max-width: 768px) {
+      height: 80vw;
+    }
+  }
 }
+
+.landing-footer {
+  h2 {
+    font-size: calc(1rem + 1.5vw);
+  }
+
+  a, span {
+    cursor: default;
+    opacity: .75;
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+}
+
+
+
+

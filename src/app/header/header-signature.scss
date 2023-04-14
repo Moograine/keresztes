@@ -1,0 +1,66 @@
+@import 'src/assets/styles/variables';
+
+.credit-signature {
+  min-height: 3rem;
+
+  h5:hover:after {
+    width: 0;
+  }
+
+  .credit {
+    transition: all 0.75s cubic-bezier(1, -0.65, .25, 1);
+    z-index: 3;
+
+    &.hide {
+      transform: translateX(-10rem);
+      opacity: 0;
+    }
+  }
+
+  .signature {
+    transform: translateY(-100%);
+    opacity: 0;
+    color: $ocean-blue;
+    cursor: default;
+    border: none;
+    margin-right: .1rem;
+    border-right: 2px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &.show {
+      opacity: 1;
+      animation: typewriter 3.5s steps(44) 1s 1 normal both,
+      blinkTextCursor 500ms steps(40) .75s 8;
+    }
+
+    &.hide {
+      opacity: 0;
+      transition: all .75s;
+      transform: translate(20rem, -100%);
+      animation: typewriter 3.5s steps(44) 1s 1 normal both,
+      blinkTextCursor 500ms steps(40) .75s 8;
+    }
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  @keyframes blinkTextCursor {
+    from,
+    to {
+      border-color: transparent
+    }
+    0% {
+      border-color: $cursor-color;
+    }
+  }
+}

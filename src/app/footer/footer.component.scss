@@ -1,4 +1,4 @@
-$shadow: rgb(0 0 0 / 25%);
+@import 'src/assets/styles/variables';
 
 .contact {
   height: 15rem;
@@ -27,11 +27,10 @@ $shadow: rgb(0 0 0 / 25%);
   cursor: default;
 
   i {
-    color: rgb(93, 86, 84);
+    color: $gray;
     transition: linear;
     cursor: pointer;
-    filter: drop-shadow(2px 2px 1px $shadow);
-    //text-shadow: 0 0 10px $shadow, 0 0 20px $shadow, 0 0 30px $shadow ;
+    filter: drop-shadow(2px 2px 1px $shadow-light);
     &:hover {
       opacity: .75;
     }
@@ -39,7 +38,7 @@ $shadow: rgb(0 0 0 / 25%);
 }
 
 .conditions p {
-  color: rgb(74, 73, 100);
+  color: $purple-blue;
   font-weight: bold;
   border-bottom: .1rem solid;
   cursor: pointer;

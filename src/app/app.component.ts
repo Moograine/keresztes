@@ -1,13 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { bounceAnimation, fadeAnimation, slideDownAnimation } from '../assets/animations/animations';
+import { slideDownAnimation } from '../assets/animations/animations';
+import { FreshService } from '../assets/services/fresh.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    bounceAnimation,
-    fadeAnimation,
     slideDownAnimation
   ]
 })
@@ -17,8 +16,12 @@ export class AppComponent implements OnInit {
   showHeader = false;
   showFooter = false;
 
+  constructor(private fresh: FreshService) {
+  }
+
   ngOnInit() {
     this.initializeAnimations();
+    this.fresh.changeStatus();
   }
 
   initializeAnimations(): void {

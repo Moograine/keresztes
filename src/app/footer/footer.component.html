@@ -1,5 +1,6 @@
 <div class="p-3 overflow-hidden position-relative">
-  <div class="contact border-top border-bottom border-light d-flex justify-content-around align-items-center overflow-hidden">
+  <div
+    class="contact border-top border-bottom border-light d-flex justify-content-around align-items-center overflow-hidden">
     <div [@slideUpText]="activateAnimation ? 'rendered' : 'hidden'">+40755753463</div>
     <div class="d-flex justify-content-center social-media" [@slideUpText]="activateAnimation ? 'rendered' : 'hidden'">
       <a href="https://www.linkedin.com/in/zsolt-keresztes-23bb65136/" target="_blank">
@@ -14,11 +15,15 @@
       <a href="https://twitter.com/JoshMoograine" target="_blank">
         <i class="fa fa-twitter mx-2"></i>
       </a>
+      <a href="https://github.com/Moograine" target="_blank">
+        <i class="fa fa-github mx-2"></i>
+      </a>
     </div>
-    <div [@slideUpText]="activateAnimation ? 'rendered' : 'hidden'">contact@keresztes.com</div>
+    <div [@slideUpText]="activateAnimation ? 'rendered' : 'hidden'">contact@kereszteszs.com</div>
   </div>
   <div class="copyright" [@slideUpText]="activateAnimation ? 'rendered' : 'hidden'">
-    <p class="mt-4 py-3 text-center text-consolas">© 2022 Keresztes Zsolt. All rights reserved. Frontend Developer & Founder of
+    <p class="mt-4 py-3 text-center text-consolas">
+      © 2022 Keresztes Zsolt. All rights reserved. Frontend Developer & Founder of
       <a href="https://www.instagram.com/joshmoograine/" target="_blank">Josh Moograine</a>
     </p>
   </div>
@@ -27,6 +32,4 @@
     <p (click)="navigateTo('refund-policy')" class="mx-3">Refund Policy</p>
     <p (click)="navigateTo('privacy-policy')">Privacy Policy</p>
   </div>
-  <!-- [ signature ] -->
-  <small class="signature position-absolute bottom-0 end-0 py-1 px-2">created by Keresztes Zsolt</small>
 </div>

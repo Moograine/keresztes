@@ -1,26 +1,104 @@
-<div class="p-5 ">
-  <h1 class="text-center text-consolas" [class.initial]="!activeArticle">
+<div #background class="landing-bg position-relative overflow-hidden mb-5">
+  <div class="background">
+  </div>
+  <h1 class="w-100 position-absolute text-center text-consolas">
     Make it impressive.
   </h1>
 </div>
 
-<div class="box-container" [class.rendered]="activeArticle">
-  <div *ngFor="let boxArray of contentBox" class="d-flex">
-    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1" tabindex="0"></div>
+<div class="m-3 m-sm-4 m-md-5 px-md-5 d-md-flex justify-content-md-between">
+  <div class="mb-5 col-md-3 ps-xl-5">
+    <h5 class="text-consolas">Role: Frontend Developer</h5>
+    <h5 class="text-consolas">Market: International</h5>
+    <h5 class="text-consolas">Framework: Angular / Vue.js</h5>
+    <h5 class="text-consolas">Date: December 2022</h5>
   </div>
-</div>
-<div class="box-container p-5 my-5" [class.rendered]="activeArticle">
-  <div *ngFor="let boxArray of contentBox" class="d-flex">
-    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1"></div>
+  <div class="col-md-8 pe-xl-5 ">
+    <p #textToBeAnimated class="content text-consolas">
+      So, 'Make it impressive'. It's not my motto, in fact, I don't even have a motto, but it sounded catchy.
+      Still, it's important to make an impact on your users, you'll want them to come back.
+    </p>
+    <p #textToBeAnimated class="my-5 content text-consolas">
+      I mainly specialize in Angular, but sometimes I'll go with Vue. I'm excited to work in other environments as well.
+      About styling frameworks: Bootstrap, PrimeNG, Ionic and Tailwind are my choices.
+    </p>
   </div>
 </div>
 
-<div #item class="m-5 pb-5 d-flex justify-content-evenly" [@bounce]="showContent ? 'rendered' : 'hidden'" [@fade]="showContent ? 'rendered' : 'hidden'">
-  <div class="p-5 bg-dark opacity-50"><h2 class="text-white">welcome to my world</h2></div>
+<div class="framework d-grid d-xl-flex flex-nowrap justify-content-evenly">
+  <div class="item d-flex justify-content-center ">
+    <img class="p-5" src="assets/images/landing/framework/angular.png">
+  </div>
+  <div class="item d-flex justify-content-center my-5 my-xl-0">
+    <img class="p-5" src="assets/images/landing/framework/bootstrap.png">
+  </div>
+  <div class="item d-flex justify-content-center">
+    <img class="p-5" src="assets/images/landing/framework/vue.png">
+  </div>
 </div>
 
-<div class="box-container pb-5 my-5" [class.rendered]="activeArticle">
-  <div *ngFor="let boxArray of contentBox" class="d-flex">
-    <div *ngFor="let box of boxArray" [style.width]="box + '%'" class="box m-1"></div>
+<div class="m-3 m-sm-4 m-md-5 px-md-5 d-md-flex justify-content-md-between">
+  <div class="col-md-8 ps-xl-5">
+    <p #textToBeAnimated class="my-5 content text-consolas">
+      There isn't a single idea that we cannot make digital. Listening to your heart's desire is my No. 1 priority.
+      You'll receive quality, functionality, detail and yet simplicity.
+    </p>
+    <p #textToBeAnimated class="my-5 content text-consolas">
+      You can also plan long-term with your project, as me and my team will be here to maintain your application.
+      But in case you're only here for a quickie, we're open to proposals all the same.</p>
   </div>
+  <div class="mb-5 my-md-5 col-md-3 pe-xl-5 text-md-end">
+    <h5 class="text-consolas">Role: Frontend Developer</h5>
+    <h5 class="text-consolas">Market: International</h5>
+    <h5 class="text-consolas">Framework: Angular / Vue.js</h5>
+    <h5 class="text-consolas">Date: December 2022</h5>
+  </div>
+</div>
+
+<div class="self-content pt-5 m-2 m-md-4 position-relative overflow-hidden">
+  <div class="background">
+  </div>
+
+  <div class="d-flex position-absolute top-0 start-0 justify-content-center align-items-center w-100 h-100 flex-column">
+    <div class="d-flex flex-column flex-xl-row justify-content-center align-items-center w-100 mt-5 px-1 px-sm-5">
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <h1 class="text-center">Who am I?</h1>
+      </div>
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <p>An aquarius dude, with a spirited drive to change the world.</p>
+      </div>
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <p>Frontend Developer and UI / UX Designer, and also a musician.</p>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-xl-row justify-content-center align-items-center w-100 px-1 px-sm-5">
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <p>I love to give. I also love people who smile.</p>
+      </div>
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <p>I specialize in Angular and Alternative Rock. A happy accident.</p>
+      </div>
+      <div class="box col-12 col-md-8 col-xl-3 m-2 mx-3 my-xl-3">
+        <p>With 2+ years of experience working for one of the biggest players in the German Healthcare Industry.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="my-5 py-4 mx-md-5 d-md-flex justify-content-md-between">
+  <p #textToBeAnimated class="col-md-6 p-3 content-sm text-consolas">
+    In my humble opinion, anyone who uses your application is also your client, not just a user.
+    And if you're in a business, where you interact with clients, I have only one rule:
+    do whatever you want, but do not bore them.
+  </p>
+  <p #textToBeAnimated class="col-md-6 p-3 content-sm text-consolas">
+    Make a bold statement. Play with contrast. Set things in motion. Pull visitors deeper into the page, literally.
+    Let users play with design elements. Everyone loves a handsome application. Make it a terrific experience.
+  </p>
+</div>
+
+<div class="m-2 p-2 m-sm-4 m-md-5 p-sm-4 p-md-5 landing-footer">
+  <h2 class="text-consolas">Check out my <a href="assets/files/Keresztes%20Zsolt.pdf" target="_blank"
+                                            class="text-decoration-none text-dark">resume</a>.</h2>
+  <h2 (click)="navigateToContact()" class="text-consolas">Feel free to drop me a <span>line</span>.</h2>
 </div>

@@ -1,3 +1,28 @@
-<div class="min-vh-100 m-5 p-5 text-opacity-75">
-  <h2 class="text-center mt-5 text-consolas">Want to hire me? Yeey.</h2>
+<div class="min-vh-100 m-2 m-sm-4 px-1 pt-1 p-sm-5">
+  <h2 class="text-center mt-3 text-consolas">Am I the right choice for you?</h2>
+  <div class="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-start p-1 p-sm-3">
+    <div
+      *ngFor="let item of contentItems"
+      #content
+      class="content mx-3 mt-3 d-flex flex-column align-items-center position-relative"
+      [class.mb-6]="item.showContent">
+      <div class="shadow rounded-2 overflow-hidden">
+        <img [src]="item.imagePath">
+      </div>
+      <div class="w-100 mt-2 mt-sm-3">
+        <h3>{{item.title}}</h3>
+        <p>{{item.description}}</p>
+        <button (click)="toggleContent(item, section.offsetHeight, content)"
+                class="btn btn-dark">{{item.showContent ? 'Show Less' : 'Learn More'}}</button>
+        <div class="mt-3 pl-2 position-absolute overflow-hidden">
+          <div #section class="learn-more" [class.show]="item.showContent">
+            <div class="d-flex" *ngFor="let section of item.content">
+              <i class="fa fa-check text-muted me-1"></i>
+              <p class="m-0">{{section}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -15,6 +15,7 @@ import { AboutComponent } from './landing/about/about.component';
 import { WorkComponent } from './landing/work/work.component';
 import { ContactComponent } from './landing/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     ReactiveFormsModule,

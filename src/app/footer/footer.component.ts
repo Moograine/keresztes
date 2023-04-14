@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { slideUpTextAnimation } from '../../assets/animations/animations';
 
 @Component({
@@ -13,12 +13,10 @@ import { slideUpTextAnimation } from '../../assets/animations/animations';
 export class FooterComponent {
   @Input() activateAnimation: boolean = false;
 
-  constructor(private router: Router) { }
-
-
+  constructor(private router: Router) {
+  }
 
   navigateTo(path: 'terms-of-service' | 'refund-policy' | 'privacy-policy'): void {
     this.router.navigate([path]).then();
   }
-
 }

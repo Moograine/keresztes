@@ -1,13 +1,11 @@
-$beige-light-transparent:  rgba(231, 213, 212, 0.75);
-$beige-light: rgb(252, 209, 196);
-
-
-$beige-light-transparent2: rgba(160, 148, 148, 0.75);
-$beige-light2: rgb(160, 133, 125);
-
-
-$dark-gray: rgba(55, 55, 55);
+@import 'src/assets/styles/variables';
 
 .wrapper {
+  width: 100vw;
   background-image: linear-gradient(to right, $beige-light-transparent, $beige-light);
+
+  .header {
+    position: relative;
+    z-index: 3;
+  }
 }

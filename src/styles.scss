@@ -6,9 +6,25 @@ html, body {
 }
 
 .text-consolas {
-  font-family: 'Consolas', sans-serif;
+  font-family: Consolas, monaco, monospace;
 }
 
-.signature {
-  opacity: 5%
+h2 {
+  font-size: calc(.3rem + 3.3vw);
+}
+
+::-webkit-scrollbar {
+  width: .5rem;
+
+  &-track {
+    background: #f1f1f1;
+  }
+
+  &-thumb {
+    background: #888;
+
+    &:hover {
+      background: #555;
+    }
+  }
 }

@@ -1,0 +1,28 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 155" width="525" height="525">
+	<title>New Project</title>
+	<defs>
+		<image  width="1080" height="1080" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAQ4AQMAAADW3v7MAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAClSURBVHic7cExAQAAAMKg9U9tCU+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgaPd4AATqdxpIAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 107px;fill: #FFF;font-weight: 700;font-family: "spinweradCBold", "spinweradC" } 
+		.t1 { font-size: 150px;fill: #FFF;font-weight: 700;font-family: "spinweradCBold", "spinweradC" } 
+	</style>
+	<use id="Background" href="#img1" x="-456" y="-373"/>
+	<text id="" style="transform: matrix(1,0,0,1,0,0)" >
+	</text>
+	<text id="" style="transform: matrix(1,0,0,1,222,160)" >
+	</text>
+	<text id="s" style="transform: matrix(1,0,0,1,104,59)" >
+		<tspan x="5" y="32" class="t0">s
+</tspan>
+	</text>
+	<text id="K" style="transform: matrix(1,0,0,1,0,38)" >
+		<tspan x="0" y="76.2" class="t1">K</tspan><tspan  y="76.2" class="t1">
+</tspan>
+	</text>
+	<text id="Z" style="transform: matrix(1,0,0,1.1,35,58)" >
+		<tspan x="0" y="67.2" class="t1">Z</tspan><tspan  y="76.2" class="t1">
+</tspan>
+	</text>
+</svg>

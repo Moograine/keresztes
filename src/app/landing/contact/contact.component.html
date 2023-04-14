@@ -1,82 +1,113 @@
 <div class="min-vh-100 m-4 p-1 p-sm-5 text-opacity-75">
-  <h2 class="text-center mt-5 text-consolas">Talk to me! If you have any questions, or just wanna reach out, don't hesitate.
-                                             If it's business related, you can send me a detailed proposal as well.</h2>
+  <div class="d-flex justify-content-center">
+    <h2 class="text-center mt-3 text-consolas">Talk to me.</h2>
+  </div>
   <div class="mt-5 d-flex justify-content-center">
-    <div class="form-container">
-      <div class="d-flex text-consolas">
-        <p [class.active]="isContact" (click)="switchForm()">talk to me</p>
-        <p [class.active]="!isContact" (click)="switchForm()" class="ms-5">send a detailed proposal</p>
+    <div class="form-container ">
+      <div class="ms-2 d-flex text-consolas switch">
+        <p [class.active]="isContact" (click)="switchForm(true, fileWrapper.offsetHeight)">talk to me</p>
+        <p [class.active]="!isContact" (click)="switchForm(false, fileWrapper.offsetHeight)" class="proposal">
+          send a detailed proposal</p>
       </div>
-      <form *ngIf="isContact" [formGroup]="contact">
-        <div class="d-md-flex d-sm-block">
-          <div class="col m-1">
+      <form [formGroup]="contact">
+        <div [class.show]="!isContact" class="proposal-name position-relative d-md-flex d-sm-block">
+          <div class="col p-1">
             <input type="text"
                    placeholder="Name"
                    formControlName="name"
                    aria-label="Name">
           </div>
-          <div class="col m-1">
+          <div class="col p-1">
             <input type="text"
                    placeholder="Email"
                    formControlName="email"
                    aria-label="Email">
           </div>
+          <div #proposalBudget class="proposal-container overflow-hidden position-absolute w-100 ">
+            <div [class.show]="!isContact" class="proposal-budget position-relative  d-md-flex d-sm-block">
+              <div class="col p-1 position-relative">
+                <input type="text"
+                       placeholder="Budget"
+                       formControlName="budget"
+                       aria-label="Budget">
+                <div class="position-absolute end-0 top-0 p-1 pb-0">
+                  <i class="fa fa-info-circle custom-tooltip pt-2 pe-1">
+                    <div class="tooltip-text">Knowing your estimated budget is important for me in the initial phase.
+                      This way, I can get back to you with a more direct answer.
+                      I'm showing you my cards, and I expect you to do the same. It's only fair.
+                    </div>
+                  </i>
+                </div>
+              </div>
+              <div class="col p-1">
+                <div class="custom-dropdown">
+                  <div
+                    [class.white]="contact.getRawValue().period"
+                    (click)="dropdown.classList.add('phone-hover')"
+                    class="dropdown-label">{{contact.getRawValue().period || 'Period'}}
+                  </div>
+                  <div #dropdown class="dropdown-content phone-hover">
+                    <div *ngFor="let item of periodItems, let last = last" class="custom-option">
+                      <p (click)="selectPeriodItem(item)" [class.last]="last">{{item}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="m-1">
+        <div class="p-1">
           <textarea type="text"
+                    [class.show]="!isContact"
+                    class="proposal-description"
                     placeholder="Description"
                     formControlName="description"
                     aria-label="Description">
           </textarea>
         </div>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-dark opacity-75 m-1" type="submit" (click)="submit()">Submit</button>
-        </div>
-      </form>
-      <form *ngIf="!isContact" [formGroup]="proposal">
-        <div class="d-md-flex d-sm-block">
-          <div class="col m-1">
-            <input type="text"
-                   placeholder="Name"
-                   formControlName="name"
-                   aria-label="Name">
-          </div>
-          <div class="col m-1">
-            <input type="text"
-                   placeholder="Email"
-                   formControlName="email"
-                   aria-label="Email">
-          </div>
-        </div>
-        <div class="d-md-flex d-sm-block">
-          <div class="col m-1">
-            <input type="text"
-                   placeholder="Budget"
-                   formControlName="budget"
-                   aria-label="Budget">
-          </div>
-          <div class="col m-1">
-            <select
-              formControlName="period"
-              aria-label="Contract Peripd">
-              <option value="" selected disabled hidden>Contract period</option>
-              <option selected="selected">1 month</option>
-              <option>2 months</option>
-              <option>3 months</option>
-              <option>indefinite</option>
-            </select>
+        <div #fileWrapper class="overflow-hidden">
+          <div [class.show]="!isContact" class="file-wrapper d-flex flex-wrap">
+            <label class="file m-1" [class]="allFiles.length < 10 ? 'on' : 'off'">
+              <input type="file"
+                     id="file"
+                     class="d-none"
+                     *ngIf="allFiles.length < 10"
+                     #fileInput
+                     (change)="attachFile(fileInput.files)">
+              Attach File
+            </label>
+            <div *ngFor="let file of allFiles; index as index"
+                 [style]="'--fileColor: #' + (705 + index) + 'd54'"
+                 class="file m-1">
+              <div class="d-flex">
+                <p class="mb-0 file-name">{{file.name}}</p>
+                <i class="fa fa-close pt-1 ps-3" (click)="removeFile(file)"></i>
+              </div>
+            </div>
+            <small *ngIf="allFiles.length >= 10" class="ps-1">Sorry, but you've reached the maximum number of files you
+              can
+              upload.</small>
           </div>
         </div>
-        <div class="m-1">
-          <textarea type="text"
-                    placeholder="Description"
-                    formControlName="description"
-                    aria-label="Description">
-          </textarea>
-        </div>
-        <button class="btn btn-light opacity-75 m-1" (click)="attachFile()">Attach file</button>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-dark opacity-75 m-1" type="submit" (click)="submit()">Submit</button>
+        <div class="footer-content" [class.translate]="isContact">
+          <div class="d-flex justify-content-end">
+            <button
+              class="btn btn-dark m-1 position-relative d-flex justify-content-center align-items-center"
+              type="submit"
+              #submitButton
+              [disabled]="contact.invalid || (!isContact && !contact.get('period')?.value)"
+              (click)="submit(submitButton)">
+                <span *ngIf="status === ''" class="position-absolute">Submit</span>
+                <i *ngIf="status === 'loading'" class="fa fa-spinner fa-spin position-absolute"></i>
+                <span *ngIf="status === 'sent'" class="position-absolute">Sent</span>
+            </button>
+          </div>
+          <div class="pt-5 mx-4 text-center">
+            <p class="mt-5 border-top border-light opacity-50"></p>
+            <span>If you have any questions, or just wanna reach out, don't hesitate.</span>
+            <small class="d-block">If it's business related, you can send me a detailed proposal as well.</small>
+            <p class="mt-3 border-top border-light opacity-50"></p>
+          </div>
         </div>
       </form>
     </div>
