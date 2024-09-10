@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   EmailValidator,
@@ -96,50 +96,39 @@ export class ContactComponent implements OnDestroy {
     }
   }
 
-  sendMail(button: HTMLButtonElement): void {
-    this.communications.sendMail(this.contact.value).pipe(takeWhile(() => this.activeComponent))
-      .subscribe((): void => {
-        this.status = 'sent';
-        button.classList.remove('opacity-75');
-        button.classList.add('bg-green');
-        this.contact.reset();
-        this.allFiles = [];
-        setTimeout((): void => {
-          this.status = '';
-          button.classList.remove('bg-green');
-        }, 1000);
-      });
+  resetButtonAfterStatusChange(button: HTMLButtonElement): void {
+    this.status = 'sent';
+    button.classList.remove('opacity-75');
+    button.classList.add('bg-green');
+    this.contact.reset();
+    this.allFiles = [];
+    setTimeout((): void => {
+      this.status = '';
+      button.classList.remove('bg-green');
+    }, 1000);
   }
 
   submit(button: HTMLButtonElement): void {
     if (this.isContact) {
       this.status = 'loading';
       button.classList.add('opacity-75');
-      this.communications.getContactList().pipe(takeWhile(() => this.activeComponent))
-        .subscribe((contactList: object): void => {
-          this.contact.value.id = contactList ? Object.keys(contactList).length.toString() : '0';
-          this.communications.reachOutWithContact(this.contact.value)
-            .pipe(takeWhile(() => this.activeComponent))
-            .subscribe((): void => {
-              this.sendMail(button);
-            })
-        })
+      this.communications.reachOutWithContact(this.contact.value)
+        .pipe(takeWhile(() => this.activeComponent))
+        .subscribe((): void => {
+          this.resetButtonAfterStatusChange(button);
+        });
     } else { // TODO send correct format
       this.status = 'loading';
       button.classList.add('opacity-75');
-      this.communications.getProposalList().pipe(takeWhile(() => this.activeComponent))
-        .subscribe((proposalList: object): void => {
-          this.contact.value.id = proposalList ? Object.keys(proposalList).length.toString() : '0';
-          this.communications.reachOutWithProposal(this.contact.value)
-            .pipe(takeWhile(() => this.activeComponent))
-            .subscribe((): void => {
-              this.sendMail(button);
-            })
-        })
+      this.communications.reachOutWithProposal(this.contact.value)
+        .pipe(takeWhile(() => this.activeComponent))
+        .subscribe((): void => {
+          this.resetButtonAfterStatusChange(button);
+        });
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.activeComponent = false;
   }
 }
